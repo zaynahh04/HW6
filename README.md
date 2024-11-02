@@ -9,3 +9,5 @@ The first part requires the implementation of the methods add() and contains() w
 The second part requires is the Priority Game problem. This part provides more practice with teh Java Collection Framework library's PriorityQueue Class.
  
 The third and forth parts are sorting problems. The first requires solving removing duplicates from an ArrayList. The second sorting problem requires solving various combinations of numbers that add up to some sum.
+
+Do not modify the file 'Main.java'. Your work must pass all tests in the file 'Main.java' to receive 100%
