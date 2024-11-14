@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Zaynah Hussaini
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -150,10 +150,15 @@ class PriorityQueue<E, P> {
      */
 
     public Node add(E e, P priority) {
+        Node newNode = new Node(e, priority, tree.size());
+        tree.add(newNode);
+        pullUp(tree.size() - 1);
+        return newNode;
+    }
+
 
         // YOUR CODE GOES HERE
-        return null;
-    }
+
 
 
     /**
@@ -167,6 +172,11 @@ class PriorityQueue<E, P> {
      */
 
     public boolean contains(E e) {
+        for (Node node:tree){
+            if(node.value.equals(e)){
+                return true;
+            }
+        }
 
         // ADD YOUR CODE HERE
         return false;

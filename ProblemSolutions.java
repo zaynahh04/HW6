@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Zaynah Hussaini 001
  *
  *   This java file contains the problem solutions for the methods lastBoulder,
  *   showDuplicates, and pair methods. You should utilize the Java Collection
@@ -64,12 +64,27 @@ public class ProblemSolutions {
      */
 
   public static int lastBoulder(int[] boulders) {
+      PriorityQueue<Integer> ab = new PriorityQueue<>(Collections.reverseOrder());
+      for (int currentBoulder : boulders) {
+          ab.offer(currentBoulder);
+      }
+      while (ab.size() > 1) {
+          int x = ab.poll();
+          int y = ab.poll();
+          if (x != y) {
+              ab.offer(x - y);
+          }
+      }
+      if (ab.isEmpty()) {
+          return 0;
+      } else {
+          return ab.peek();
+      }
+  }
 
       //
       // ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOUR NAME / SECTION # ABOVE
       //
-      return -1;
-  }
 
 
     /**
@@ -90,12 +105,21 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> showDuplicates(ArrayList<String> input) {
-
+        HashMap<String, Integer> countMap = new HashMap<>();
+        for(String message:input) {
+            countMap.put(message, countMap.getOrDefault(message, 0) + 1);
+        }
+        ArrayList<String> multiples = new ArrayList<>();
+        for(String key:countMap.keySet()){
+            if(countMap.get(key) > 1){
+                multiples.add(key);
+            }
+        }
+        Collections.sort(multiples);
+        return multiples;
         //
         //  YOUR CODE GOES HERE
         //
-        return new ArrayList<>();  // Make sure result is sorted in ascending order
-
     }
 
 
@@ -130,10 +154,27 @@ public class ProblemSolutions {
      */
 
     public static ArrayList<String> pair(int[] input, int k) {
+        HashSet<Integer> seen = new HashSet<>();
+        HashSet<String> pairs = new HashSet<>();
 
-        //
-        //  YOUR CODE GOES HERE
-        //
-        return new ArrayList<>();  // Make sure returned lists is sorted as indicated above
+        for (int number : input) {
+            int complement = k - number;
+
+            // Check if the complement exists in the seen set
+            if (seen.contains(complement)) {
+                // Create a pair and sort it for consistency
+                int a = Math.min(number, complement);
+                int b = Math.max(number, complement);
+                pairs.add("(" + a + ", " + b + ")");
+            }
+            seen.add(number);
+        }
+
+        // Convert HashSet to ArrayList and sort it
+        ArrayList<String> endResult = new ArrayList<>(pairs);
+        Collections.sort(endResult);
+
+        return endResult;
     }
 }
+        // Make sure returned lists is sorted as indicated above
